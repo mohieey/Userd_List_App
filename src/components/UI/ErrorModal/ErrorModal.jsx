@@ -4,9 +4,9 @@ import Button from "../../UI/Button/Button";
 
 import classes from "./ErrorModal.module.css";
 
-const ErrorModal = ({ title, message }) => {
+const ErrorModal = ({ title, message, onConfirm }) => {
   return (
-    <div className={classes.backdrop}>
+    <div className={classes.backdrop} onClick={onConfirm}>
       <Card className={classes.modal}>
         <header className={classes.header}>
           <h2>{title}</h2>
@@ -15,7 +15,7 @@ const ErrorModal = ({ title, message }) => {
           <p>{message}</p>
         </div>
         <footer className={classes.actions}>
-          <Button>Okay</Button>
+          <Button onClick={onConfirm}>Okay</Button>
         </footer>
       </Card>
     </div>
