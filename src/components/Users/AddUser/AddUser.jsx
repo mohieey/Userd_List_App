@@ -45,7 +45,7 @@ const AddUser = ({ onAddUser }) => {
   const errorHandler = () => setError(null);
 
   return (
-    <div>
+    <React.Fragment>
       {error && (
         <ErrorModal
           title={error.title}
@@ -72,7 +72,7 @@ const AddUser = ({ onAddUser }) => {
           <Button type="submit">Add User</Button>
         </form>
       </Card>
-    </div>
+    </React.Fragment>
   );
 };
 
