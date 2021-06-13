@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Button from "../../UI/Button/Button";
 import Card from "../../UI/Card/Card";
+import ErrorModal from "../../UI/ErrorModal/ErrorModal";
 
 import classes from "./AddUser.module.css";
 
-const AddUser = () => {
+const AddUser = ({ onAddUser }) => {
   const [enteredUserName, setEnteredUserName] = useState("");
   const [enteredUserAge, setEnteredUserAge] = useState("");
 
@@ -18,7 +19,7 @@ const AddUser = () => {
 
     if (+enteredUserAge < 1) return;
 
-    console.log(enteredUserName, enteredUserAge);
+    onAddUser(enteredUserName, enteredUserAge);
     setEnteredUserName("");
     setEnteredUserAge("");
   };
@@ -30,25 +31,31 @@ const AddUser = () => {
   };
 
   return (
-    <Card className={classes.input}>
-      <form onSubmit={submitHandler}>
-        <label htmlFor="username">Username</label>
-        <input
-          id="username"
-          type="text"
-          onChange={usernameChangedHandler}
-          value={enteredUserName}
-        />{" "}
-        <label htmlFor="age">Age (Years)</label>
-        <input
-          id="age"
-          type="number"
-          onChange={userAgeChangedHandler}
-          value={enteredUserAge}
-        />
-        <Button type="submit">Add User</Button>
-      </form>
-    </Card>
+    <div>
+      <ErrorModal
+        title="An Error Occured"
+        message="Something went wrong!"
+      ></ErrorModal>
+      <Card className={classes.input}>
+        <form onSubmit={submitHandler}>
+          <label htmlFor="username">Username</label>
+          <input
+            id="username"
+            type="text"
+            onChange={usernameChangedHandler}
+            value={enteredUserName}
+          />{" "}
+          <label htmlFor="age">Age (Years)</label>
+          <input
+            id="age"
+            type="number"
+            onChange={userAgeChangedHandler}
+            value={enteredUserAge}
+          />
+          <Button type="submit">Add User</Button>
+        </form>
+      </Card>
+    </div>
   );
 };
 
